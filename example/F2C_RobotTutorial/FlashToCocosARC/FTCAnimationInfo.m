@@ -12,6 +12,11 @@
 
 @synthesize name, frameInfoArray, partName;
 
-
+- (void) dealloc{
+    [name release];
+    [frameInfoArray release];
+    [partName release];
+    [super dealloc];
+}
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "cocos2d.h"
 #import "FTCSprite.h"
 #import "FTCAnimEvent.h"
 
@@ -15,8 +14,6 @@
 
 @interface FTCCharacter : CCSprite
 {
-    
-
     NSArray                     *currentAnimEvent;
     
     int                         intFrame;
@@ -24,17 +21,30 @@
 
     NSString                    *currentAnimationId;
     NSString                    *nextAnimationId;
+    NSString                    *suffix;
     
     BOOL                        _doesLoop;
     BOOL                        nextAnimationDoesLoop;
     BOOL                        _isPaused;
+    BOOL                        _isSchedulerRunning;
     
+    float                       charWidth;
+    
+    float   top, left, right, bottom;
+    CGPoint virtualAnchorPoint;
 }
 
-@property (unsafe_unretained) id<FTCCharacterDelegate> delegate;
-@property (strong) NSMutableDictionary *childrenTable;
-@property (strong) NSMutableDictionary *animationEventsTable;
+@property (readwrite, assign) id<FTCCharacterDelegate> delegate; //NOARC
+@property (nonatomic, retain) NSMutableDictionary *childrenTable; //NOARC
+@property (nonatomic, retain) NSMutableDictionary *animationEventsTable; //NOARC
+@property (strong) NSMutableDictionary *externAnimationEventsTable; //**
+@property float frameRate;
 
+@property float top;
+@property float left;
+@property float right;
+@property float bottom;
+@property (nonatomic) CGPoint virtualAnchorPoint;
 
 
 +(FTCCharacter *) characterFromXMLFile:(NSString *)_xmlfile;
@@ -45,7 +55,7 @@
 -(void) playFrame:(int)_frameIndex fromAnimation:(NSString *)_animationId;
 -(void) playFrame;
 
-
+-(void) initContentSize;
 -(id) initFromXMLFile:(NSString *)_xmlfile;
 -(NSString *) getCurrentAnimation;
 -(int) getDurationForAnimation:(NSString *)_animationId;
@@ -57,12 +67,19 @@
 // private
 -(void) setFirstPose;
 -(void) createCharacterFromXML:(NSString *)_xmlfile;
+-(void) scheduleAnimation;
+
+
+// Abel
+-(void)addDebugGraphics;
+
+//NOARC
+- (void) destroy;
 
 @end
 
 
 @protocol FTCCharacterDelegate <NSObject>
-
 
 @optional
 -(void) onCharacterCreated:(FTCCharacter *)_character;

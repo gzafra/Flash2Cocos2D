@@ -11,20 +11,23 @@
 @implementation FTCAnimEvent
 @synthesize eventsInfo, frameCount;
 
-
-
-
 - (id)init
 {
     self = [super init];
     if (self) {
 
         NSMutableArray *__eventsInfo = [[NSMutableArray alloc] init];
-        [self setEventsInfo:__eventsInfo];  
+        [self setEventsInfo:__eventsInfo];
+        [__eventsInfo release]; // NOARC
         __eventsInfo = nil;
     }
     
     return self;
+}
+
+-(void) dealloc{
+    [eventsInfo release]; //NOARC
+    [super dealloc];
 }
 
 @end

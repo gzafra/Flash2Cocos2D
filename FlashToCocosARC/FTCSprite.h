@@ -17,15 +17,19 @@
     CCNode          *debugDrawingNode;
     NSArray         *currentAnimationInfo;
     FTCCharacter    *currentCharacter;
+    
+    // Abel
+    NSMutableDictionary *externAnimationsArr;
 }
 
-@property (strong) NSString              *name;
-@property (unsafe_unretained) BOOL       ignoreRotation;
-@property (unsafe_unretained) BOOL       ignorePosition;
-@property (unsafe_unretained) BOOL       ignoreScale;
+@property (nonatomic, retain) NSString              *name;  //NOARC
+@property (readwrite, assign) BOOL       ignoreRotation;    //NOARC
+@property (readwrite, assign) BOOL       ignorePosition;    //NOARC
+@property (readwrite, assign) BOOL       ignoreScale;   //NOARC
+@property (readwrite, assign) BOOL       ignoreAlpha;   //NOARC
 
-@property (strong) NSMutableDictionary   *animationsArr;
-
+@property (nonatomic, retain) NSMutableDictionary   *animationsArr;
+@property (nonatomic, assign) NSMutableDictionary *externAnimationsArr;
 
 // private
 -(void) setCurrentAnimation:(NSString *)_framesId forCharacter:(FTCCharacter *)_character;

@@ -12,3 +12,6 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #endif
+
+#define __FTCOPTIMIZED true
+#define kDebugFTC false
