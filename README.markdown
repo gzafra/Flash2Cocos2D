@@ -1,3 +1,21 @@
+<h2>Version notes:</h2>
+
+<b>Fork of Flash2Cocos2D modified to:</b>
+- Use spriteSheets and batchNodes (a blank.png sprite is added in every FTCCharacter, so that texture must exist on the sprite sheet). Also note that for different sprites, a suffix should be added to avoid using the same name.
+- Preload all parts and animations for every XML, so that its only loaded once and not in runtime. (This allows a more heavy use of the library without destroying performance).
+- Update ContentSize of each FTCCharacter aproximately using part positions and animations.
+- Also load color and alpha from xml.
+
+<h3>Additional notes:</h3>
+- This code has been stripped from the project so it may need some tweaking before using it on another project.
+- ARC is no longer used in the library, keep that in mind.
+- Working with Cocos2d 2.0
+- ColorUtils utility class added to parse colors in hex from XML into ccColor3B
+- __FTCOPTIMIZED global constant must be added and set to true if you want preloading to work. This flag was used to test performance between the two systems.
+- kDebugFTC global constant must be added and set to true or false wheter you want debug graphics to be shown.
+- I apologize in advance for any english mistake or if you find some spanish comments.
+
+
 FlashToCocos2D
 ===============
 
