@@ -5,9 +5,12 @@
 - Preload all parts and animations for every XML, so that its only loaded once and not in runtime. (This allows a more heavy use of the library without destroying performance).
 - Update ContentSize of each FTCCharacter aproximately using part positions and animations.
 - Also load color and alpha from xml.
+- Stop scheduler after an animation finishes if loop is set to false.
 
 <h3>Additional notes:</h3>
 - This code has been stripped from the project so it may need some tweaking before using it on another project.
+-  [self scheduleAnimation] is commented on line 286 of FTCCharacter.m. Uncomment or call manually.
+-  If an animation finished and is not set to loop, it will unschedule the internal update to improve performance. If another animation is later triggered,  [self scheduleAnimation] will need to be called manually again.
 - ARC is no longer used in the library, keep that in mind.
 - Working with Cocos2d 2.0
 - ColorUtils utility class added to parse colors in hex from XML into ccColor3B
@@ -15,6 +18,7 @@
 - kDebugFTC global constant must be added and set to true or false wheter you want debug graphics to be shown.
 - I apologize in advance for any english mistake or if you find some spanish comments.
 
+<b> Hope I don't forget anything. If you have any problem getting it to work, don't hesitate to contact me.</b>
 
 FlashToCocos2D
 ===============
